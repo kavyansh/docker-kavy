@@ -1,0 +1,27 @@
+
+sudo: required 
+
+
+services: 
+    - docker 
+
+before_install:
+    - docker build -t dockerkavy -f Dockerfile.dev .
+
+script:
+    -docker run -e CI=true dockerkavy  npm run test
+
+
+deploy:
+    provider: elasticbeanstalk
+    access_key_id: $ACCESS_KEY_ID 
+      
+    secret_access_key:
+      secure: "$SECRET_ACCESS_KEY"
+    region: "ap-south-1"
+    app: "docker-kavy"
+    env: "DockerKavy-env"
+    bucket_name: "elasticbeanstalk-ap-south-1-919770083684"
+    bucket_path: "docker-kavy"
+    on:
+        branch: master
