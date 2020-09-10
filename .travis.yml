@@ -22,6 +22,3 @@ deploy:
     app: "docker-kavy"
     env: "DockerKavy-env"
     bucket_name: "elasticbeanstalk-ap-south-1-919770083684"
-    bucket_path: "docker-kavy"
-    on:
-        branch: master
